@@ -290,7 +290,7 @@ def player_with_longest_name
   return longest
 end
 
-def long_name_steals_a_ton
+def long_name_steals_a_ton?
   #if player_with_longest_name has most steals, return true
   #check if names for both categories match and return true if they do
   steals_most = ''
