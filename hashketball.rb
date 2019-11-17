@@ -245,14 +245,60 @@ end
 def most_points_scored
   #return which player has the most points?
   most_points = 0
+  most_points_player= ''
   game_hash.each do |place, team|
     team[:players].each do |player|
       size = player[:points]
       if size > most_points
         most_points = player[:points]
-        most_points_player = player[:points]
+        most_points_player = player[:player_name]
       end
     end
   end
-  most_points_player  
+  most_points_player
 end
+
+
+def winning_team
+  #return team that has most points
+  points_total = 0
+  winner = ''
+  game_hash.each do |place, team|
+    team_points = 0
+    team_name = game_hash[place][:team_name]
+    team[:players].each do |player|
+      points = player[:points]
+      team_points += points
+        end
+      winner, points_total = team_name, team_points if team_points > points_total
+    end
+  return winner
+end
+
+
+
+def player_with_longest_name
+  longest = ''
+  longest_name_length = 0
+  game_hash.each do |place, team|
+    team[:players].each do |player|
+      name_length = player[:player_name].length
+      longest, longest_name_length = player[:player_name], name_length if name_length > longest_name_length
+
+    end
+  end
+  return longest
+end
+
+
+# def player_with_longest_name
+#   longest = ''
+#   longest_length = 0
+#   game_hash.each do |home_away, keys|
+#     keys[:players].each do |player|
+#       name_length = player[:player_name].length
+#       longest, longest_length = player[:player_name], name_length if name_length > longest_length
+#     end
+#   end
+#   return longest
+# end
